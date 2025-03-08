@@ -8,11 +8,18 @@
 #################################
 
 ## variable assignment
+
+
+
 foo <- 1
 bar = 1
 
 ## print variables at screen
+
+
 foo
+
+
 bar
 
 #################################
@@ -26,12 +33,17 @@ vec_1 <- c(1,2,3,4,5)
 vec_2 <- c("A", "B", "C", "D")
 
 ## check what happens
+
+
+
 vec_3 <- c(1, "B", 2, "C")
+
 print(vec_3)
 
 is.character(vec_3[1])
 
 ## slice a vector
+
 
 vec_2[2]
 
@@ -43,11 +55,21 @@ vec_2[c(1,3)]
 ## LISTS   ######################
 #################################
 
+
+
 list_a = list(
   a = c(1,2,3,4,5),
   b = c('a', 'b', 'd'),
   c = "a"
 )
+
+
+
+
+
+
+
+
 
 list_a
 
@@ -59,9 +81,12 @@ list_a[[1]]
 
 ## what has happened?
 
+
+
 is.list(list_a[1])
 
 is.list(list_a[[1]])
+
 
 str(list_a[[1]])
 
@@ -85,6 +110,7 @@ mat_b[2,]
 
 mat_b[,1]
 
+
 str(mat_b[,1])
 
 colnames(mat_b) = c("A", "B", "C")
@@ -96,6 +122,7 @@ mat_b
 mat_b["B"]
 
 ## named columns: better
+
 mat_b[,"B"]
 
 #################################
@@ -124,6 +151,7 @@ res_a
 ## better
 
 rownames(res_a) <- c("record1", 'record2', "record3")
+
 
 res_a
 
@@ -187,6 +215,8 @@ tib_b %>%
 
 ## use groups
 
+
+
 tib_b %>%
   group_by(category) %>%
   mutate(members = n())
@@ -216,6 +246,7 @@ for (number in tib_b$measure){
   res <- number * 2
   print(res)
 }
+
 
 res
 
