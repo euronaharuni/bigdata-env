@@ -1,5 +1,5 @@
 
-
+library (tidyverse)
 dataCellCulture = readRDS(url("https://raw.githubusercontent.com/lescai-teaching/class-bigdata-2023/main/L07_infer_workflow/L07_dataset_resampling_cellculture.rds"))
 
 ### let's save the plot with the proportions
@@ -100,5 +100,5 @@ proportions = replicate(100, {
   return(proportion)
 })
 
-hist(proportions)
+hist(proportions, xlim = c(0,3)) #we used xlim to say that it should go from 0 to 3
 abline(v = proportion, col='red', lwd=3, lty='dashed')
