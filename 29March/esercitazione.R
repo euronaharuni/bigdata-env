@@ -62,3 +62,45 @@ for(x in 1:10){
 
 
 length(x)
+
+#dataframe
+friends <- data.frame(
+  names <- c("eurona", "christian", "ciccio"),
+  ages <- c(23, 25, 20)
+)
+friends
+
+summary(friends)
+#how to access
+#[ ]gives me automatically the line by its position
+#$ can specify the line i want if i don't know the position
+
+friends[1]
+friends[2]
+
+friends$names
+
+#dataframe dimensions (obs, variables)
+
+dim(friends)
+
+
+for(x in friends$names) {
+  print(x)
+}
+
+for(age in friends$ages){
+  print(age)
+  print(age + 2)
+  
+  result <- age + 2
+  print(result)#if inside a function have to use print(name variable)
+}
+
+
+
+
+
+
+
+
