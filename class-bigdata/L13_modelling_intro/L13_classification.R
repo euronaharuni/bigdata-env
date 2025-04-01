@@ -1,6 +1,6 @@
 
 heart_disease_data = readRDS(url("https://raw.githubusercontent.com/lescai-teaching/class-bigdata-2023/main/L13_modelling_intro/L13_dataset_heart_disease_data.rds"))
-
+#mix of type of data some categorical some numerical 
 
 ## first let's split
 
@@ -11,13 +11,13 @@ heart_disease_split = initial_split(heart_disease_data, prop = 0.8)
 heart_disease_training = training(heart_disease_split)
 heart_disease_testing = testing(heart_disease_split)
 
-### now we prepare the model
+### now we prepare the model- use random forest model
 
 rf_model <- rand_forest() %>% 
   set_mode("classification") %>% 
   set_engine("ranger")
 
-
+#sort cut-> "~ ."- every other variabl ewhich is not the dependent one
 heart_disease_fit = rf_model %>% 
   fit(heart_disease_risk ~ ., data = heart_disease_training)
 
@@ -30,8 +30,9 @@ heart_disease_predictions = heart_disease_testing %>%
     predict(heart_disease_fit, heart_disease_testing, type = "prob")
   )
 
-
+#decision is the class with the highest probability
 ## let's quickly check how our predictions go
 table(heart_disease_predictions$heart_disease_risk, heart_disease_predictions$.pred_class)
 
+#confusion matrix: shows the prediction outcomes and th ereal ones 
 ## we will discuss in the next class how we can improve this

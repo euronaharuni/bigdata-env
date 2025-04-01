@@ -1,14 +1,15 @@
 
 
 library(tidymodels)
-tidymodels_prefer()
+tidymodels_prefer() 
 
 ## read the data in
 photosynthesis_data = readRDS(url("https://raw.githubusercontent.com/lescai-teaching/class-bigdata-2023/main/L13_modelling_intro/L13_dataset_photosynthesis_data.rds"))
 
 
-## split in training and testing
-set.seed(502)
+## split in training and testing #decide the data spending, majority goes into training
+#is a predicted model, the behavior would be random,simulates randomness 
+set.seed(502) 
 photosynthesis_split = initial_split(photosynthesis_data, prop = 0.8)
 
 ## inspect the results
@@ -24,7 +25,7 @@ photosynthesis_testing = testing(photosynthesis_split)
 ## reflect on the need to split with strata
 
 ### define the mathematical structure
-
+#define a linear regression with function linear_reg
 lm_model <-
   linear_reg() %>% 
   set_engine("lm")
@@ -36,7 +37,7 @@ lm_model <-
 lm_formula_fit <-
   lm_model %>% 
   fit(rate ~ light + temperature + co2, data = photosynthesis_training)
-
+#inside fit we have to specify the relationship between our data
 
 ## now there's several ways to inspect the model
 ## simplest is just
@@ -49,7 +50,7 @@ lm_formula_fit
 lm_formula_fit %>% extract_fit_engine()
 
 
-## ths function allows to apply further methods to the fitted model
+## this function allows to apply further methods to the fitted model
 ## such as
 
 ## best way to summarise is using a coherent tidymodels function
@@ -62,7 +63,7 @@ tidy(lm_formula_fit)
 
 predicted_photosynthesis_rate = predict(lm_formula_fit, photosynthesis_testing)
 
-## let's inspect this object
+  ## let's inspect this object
 
 predicted_photosynthesis_rate
 
@@ -75,7 +76,8 @@ predicted_photosynthesis_rate = predicted_photosynthesis_rate %>%
 
 
 ### now we can verify what our model predicts
-
+#the model is not performing well in extreme values, in genering lower
+#the predictors are not linearly correlated with the actual outcome
 photosynthesis_testing %>% 
   bind_cols(
     predicted_photosynthesis_rate
